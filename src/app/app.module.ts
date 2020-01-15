@@ -1,32 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+//import { RouterModule, Routes } from '@angular/router';
+// import { ReactiveFormsModule } from '@angular/forms'; //transfering the employe.module.ts as create and list attribute of employee component
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { CreateEmployeeComponent } from './employee/create-employee.component';
-import { ListEmployeeComponent } from './employee/list-employee.component';
+import { EmployeeModule } from './employee/employee.module';
 
-const appRoutes: Routes =[
-  { path:'list', component: ListEmployeeComponent},
-  { path:'create', component: CreateEmployeeComponent},
-  { path:'', redirectTo:'/list', pathMatch: 'full'}
-]
+import { EmployeeService } from './employee/employee.service';
+
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home.component';
+import { PageNotFoundComponent } from './page-not-found.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreateEmployeeComponent,
-    ListEmployeeComponent
+    HomeComponent,
+    PageNotFoundComponent
   ],
   imports: [
-    RouterModule.forRoot(appRoutes),
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    HttpClientModule,
+    EmployeeModule
   ],
-  providers: [],
+  providers: [EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
